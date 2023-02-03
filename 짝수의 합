@@ -1,0 +1,11 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        for(int i = 1; i <= n; i++){. // 1. 정수구하기(반복문)
+            if(i % 2 == 0){. // 2. 짝수 구하기(나머지가 0이 되는 수)
+            answer += i;
+            }
+        }
+        return answer;
+    }
+}
