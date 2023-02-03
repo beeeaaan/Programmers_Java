@@ -1,0 +1,11 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        if (n % 7 == 0) {. // 1. 피자 7조각
+            answer = n / 7;
+        } else {
+            answer = (n / 7) + 1;  // 2. 모두 나눠 먹기 위해 나머지가 생길 경우 추가하기
+        }
+        return answer;
+    }
+}
