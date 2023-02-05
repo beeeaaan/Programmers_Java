@@ -1,0 +1,12 @@
+class Solution {
+    public int solution(int slice, int n) {
+        int answer = 0;
+        
+        if (n % slice == 0) {  // 나머지 0일 경우 모든 사람 한조각이상씩 피자 먹음
+            answer = n / slice;
+        } else {
+            answer = n / slice + 1; // 최소 한조각 이상 피자 먹기 위해 +1 추가
+        }
+        return answer;
+    }
+}
