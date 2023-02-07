@@ -1,0 +1,7 @@
+class Solution {
+    public String solution(String my_string, String letter) {
+        String answer = "";
+        
+        return my_string.replace(letter,"");  // 문자열 치환(바꾸고 싶은 문자, 바꿀 문자)
+    }
+}
