@@ -1,0 +1,14 @@
+class Solution {
+    public String solution(String my_string) {
+        String answer = "";
+        
+        for(int i = 0; i < my_string.length(); i++) {
+            if(Character.isUpperCase(my_string.charAt(i))) { // 대문자일 경우
+                answer += Character.toLowerCase(my_string.charAt(i)); //소문자로 변환
+            }else {
+                answer += Character.toUpperCase(my_string.charAt(i)); // 대문자로 변환
+            }
+        }
+        return answer;
+    }
+}
