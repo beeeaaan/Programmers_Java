@@ -4,7 +4,7 @@ class Solution {
         
         for(int i = 0; i < array.length; i++) {
             if(array[i] == n) {  // n과 일치하는 경우
-                answer += array[i];  // 일치하는 n의 갯수
+                answer++;  // 일치하는 n의 갯수
             }
         }
         return answer;
