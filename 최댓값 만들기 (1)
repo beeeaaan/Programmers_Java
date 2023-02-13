@@ -1,0 +1,10 @@
+import java.util.*;
+class Solution {
+    public int solution(int[] numbers) {
+        int answer = 0;
+        
+        Arrays.sort(numbers); // 정렬
+        answer = numbers[numbers.length - 1] * numbers[numbers.length - 2]; // 배열 뒤에서 첫번째, 두번째 곱하기
+        return answer;
+    }
+}
