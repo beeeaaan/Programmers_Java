@@ -1,0 +1,11 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        String n1 = Integer.toString(n);  // int를 string으로 변환
+        
+        for(int i = 0; i < n1.length(); i++) {
+            answer += Integer.parseInt(n1.substring(i, i+1));  // string 숫자로 만들어 세기
+        }
+        return answer;
+    }
+}
