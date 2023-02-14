@@ -1,0 +1,12 @@
+import java.util.ArrayList;
+class Solution {
+    public ArrayList solution(int n) {
+        // ArrayList 생성
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        
+        for(int i = 1; i <= n; i += 2) { // 2를 더해 홀수로 만들기
+                list.add(i);  // add를 이용해 값 쌓기
+            }
+        return list;
+    }
+}
