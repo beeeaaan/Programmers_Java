@@ -1,0 +1,6 @@
+class Solution {
+    public int solution(String message) {
+        int answer = message.length() * 2; // 길이만큼 곱하기(글자당 2cm)
+        return answer;
+    }
+}
