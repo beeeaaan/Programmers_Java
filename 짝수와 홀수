@@ -1,0 +1,11 @@
+class Solution {
+    public String solution(int num) {
+        String answer = "";
+        if(num % 2 == 0){ // 나머지 없으면 짝수
+            answer = "Even";
+        } else {  // 나머지 있으면 홀수
+            answer = "Odd";
+        }
+        return answer;
+    }
+}
