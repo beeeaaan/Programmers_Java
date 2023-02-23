@@ -1,0 +1,12 @@
+import java.util.*;
+class Solution {
+    public int solution(String my_string) {
+        int answer = 0;
+        
+        String [] my_string_array = my_string.replaceAll("[a-zA-Z]","").split(""); // 소문자, 대문자, "" 제거
+        for (int i = 0; i < my_string_array.length; i++) {
+            answer += Integer.parseInt(my_string_array[i]); // 문자열을 숫자로 변환
+        }
+        return answer;
+    }
+}
