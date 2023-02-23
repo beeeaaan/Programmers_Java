@@ -1,0 +1,12 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        Double sqrt = Math.sqrt(n); // Math 함수 사용
+        if(sqrt == sqrt.intValue()) { // intValue : 객체의 값 정수로 변환
+            answer = 1;  // 제곱수이면
+        } else {
+            answer = 2;  // 제곱수 아닐 경우
+        }
+        return answer;
+    }
+}
