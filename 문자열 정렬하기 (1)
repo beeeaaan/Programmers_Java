@@ -1,0 +1,14 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(String my_string) {
+        String[] arr = my_string.replaceAll("[^0-9]", "").split("");  // 정규표현식하고 문자열 자르기
+        Arrays.sort(arr);  // 오름차순 정렬
+        int[] answer = new int[arr.length];
+        
+        for(int i = 0; i < answer.length; i++) {
+            answer[i] = Integer.parseInt(arr[i]); // 정수로 변환
+        }
+        return answer;
+    }
+}
