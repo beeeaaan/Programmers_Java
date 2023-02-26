@@ -1,0 +1,13 @@
+class Solution {
+    public String solution(String my_string, int num1, int num2) {
+        char str1 = my_string.charAt(num1);  // str문자열에서 num1을 char타입으로 변환
+        char str2 = my_string.charAt(num2);
+
+        char[] chars = my_string.toCharArray();  // 문자열 하나씩 쪼개 char타입의 배열로 만듬
+        chars[num1] = str2;
+        chars[num2] = str1;
+        
+        String answer = String.valueOf(chars); // ()의 객체 String으로 변환
+        return answer;
+    }
+}
