@@ -1,0 +1,25 @@
+class Solution {
+    public int[] solution(int[] numbers, String direction) {
+        int[] answer = new int[numbers.length];
+        
+        for(int i = 0; i < numbers.length; i++) {
+            // 끝숫자 앞으로 오고 한 칸씩 밀리기
+            if(direction.equals("left")) {
+                while(i < numbers.length - 1) {
+                    answer[i] = numbers[i +1];
+                    i++;
+                }
+                answer[numbers.length - 1] = numbers[0];
+            }
+            // 앞숫자 뒤로 가고 한 칸씩 당기기
+            if(direction.equals("right")) {
+                while(i < numbers.length - 1) {
+                    answer[0] = numbers[numbers.length - 1];
+                    answer[i + 1] = numbers[i];
+                    i++;
+                }
+            }
+        }
+        return answer;
+    }
+}
