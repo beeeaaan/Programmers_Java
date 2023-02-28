@@ -1,0 +1,13 @@
+class Solution {
+    public long solution(long n) {
+        long answer = 0;
+        double num = Math.sqrt(n);  // 제곱근 함수
+        
+        if(num % 1 > 0) { 
+            answer = -1; // 양의 정수 제곱이 아닌 경우
+        }
+        else answer = (long) Math.pow(num+1, 2); // 거듭제곱
+        
+        return answer;
+    }
+}
