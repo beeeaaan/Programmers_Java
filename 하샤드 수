@@ -1,0 +1,13 @@
+class Solution {
+    public boolean solution(int x) {
+        int num = x;
+        int sum = 0;
+        
+        // 몫 구할시 소수점 이하 버림
+        while(num != 0) {
+            sum += num % 10 // 자릿수 분할하여 더하기
+            num /= 10;
+        }        
+        return x % sum == 0 ? true : false;  // 하샤드 수(삼항연산자)
+    }
+}
