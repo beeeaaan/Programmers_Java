@@ -1,0 +1,16 @@
+import java.util.Arrays;
+import java.util.Collections;
+class Solution {
+    public long solution(long n) {
+		long answer = 0;
+		
+		String str = Long.toString(n);  // 문자열로 변환
+		String[] arr = str.split("");  // "" 구분으로 배열 만들기
+		
+		Arrays.sort(arr, Collections.reverseOrder()); // 내림차순 정렬
+		str = String.join("", arr); // 배열을 문자열로 합치기
+		answer = Long.parseLong(str); // 정수로 변환
+		
+		return answer;
+	}
+}
