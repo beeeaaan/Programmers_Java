@@ -1,0 +1,15 @@
+class Solution {
+    public int solution(int order) {
+        int answer = 0;
+        String strOrder = "" + order;
+        
+        for (int i = 0; i < strOrder.length(); i++) {
+            char tempChar = strOrder.charAt(i); // 문자열 문자로 변환
+
+            if (tempChar == '3' || tempChar == '6' || tempChar == '9') {
+                answer++;  // 3,6,9의 개수 세기
+            }
+        }
+        return answer;
+    }
+}
