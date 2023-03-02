@@ -1,0 +1,11 @@
+class Solution {
+    public int solution(int num, int k) {
+        int answer = 0;
+        
+        String str1 = String.valueOf(num); // 정수
+        String str2 = String.valueOf(k); // 매개변수
+        
+        answer = str1.indexOf(str2); // 위치 확인
+        return answer < 0 ? -1 : answer + 1;
+    }
+}
