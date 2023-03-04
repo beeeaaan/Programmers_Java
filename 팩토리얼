@@ -1,0 +1,21 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        
+        // 제한 사항의 최대값의 팩토리얼이 10이기 때문에 10번 반복
+        for (int i = 1; i <= 10; i++) {
+            if (n >= factorial(i)) {
+                answer = i;
+            } else {
+                break;
+            }
+        }
+        return answer;
+    }
+
+    // 팩토리얼 구하기
+    public static int factorial(int number) {
+        if (number > 1) return number * factorial(number - 1);
+        return number;
+    }
+}
