@@ -1,0 +1,18 @@
+class Solution {
+    public int solution(int i, int j, int k) {
+        int answer = 0;
+        
+        // i부터 j까지 
+        for(int x = i; x <= j; x++) {
+            String strnum = Integer.toString(x); // 문자열 변환
+            
+            // k 몇 번 나오는지
+            for(int y = 0; y < strnum.length(); y++) {
+                if(Integer.toString(k).equals(strnum.substring(y, y+1))){
+                    answer++;
+                }
+            }
+        }
+        return answer;
+    }
+}
