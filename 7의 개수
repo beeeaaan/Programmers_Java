@@ -1,0 +1,19 @@
+class Solution {
+    public int solution(int[] array) {
+        int answer = 0;
+		
+        // 10의 자리수도 포함하기 위해 문자열로 변환
+        for(int i = 0; i < array.length; i++){
+        	String str = Integer.toString(array[i]);
+        	String[] strnum = str.split("");  // 한자리수씩 확인하기 위해 배열로 분리하기
+        	
+            // 7 개수 확인
+        	for (int j = 0; j < strnum.length; j++) {
+        		if(strnum[j].equals("7")) {
+        			answer++;
+        		}
+			}
+        } 
+        return answer;
+    }
+}
