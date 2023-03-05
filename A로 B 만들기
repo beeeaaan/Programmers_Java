@@ -1,0 +1,27 @@
+import java.util.Arrays;
+
+class Solution {
+    public int solution(String before, String after) {
+        int answer = 0;
+        
+        // 문자 배열
+        char[] beforechar = before.toCharArray();
+        char[] afterchar = after.toCharArray();
+        
+        // 오름차순 정렬
+        Arrays.sort(beforechar);
+        Arrays.sort(afterchar);
+        
+        // 문자열 배열(비교 위해)
+        String beforestr = new String(beforechar);
+        String afterstr = new String(afterchar);
+        
+        // 바꾼 문자열 비교
+        if(beforestr.equals(afterstr)) {
+            answer = 1;
+        } else {
+            answer = 0;
+        }
+        return answer;
+    }
+}
