@@ -4,9 +4,9 @@ class Solution {
         
         for(int i=0; i<absolutes.length; i++){         
             if(signs[i] == true){
-                sum += absolutes[i];  // true면 양수
+                sum += absolutes[i];  // true면 양수 -> 더하기
             } else if(signs[i] == false){
-                sum -= absolutes[i];  // false면 음수
+                sum -= absolutes[i];  // false면 음수 -> 빼기
             }
         }
         return sum;
