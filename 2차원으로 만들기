@@ -1,0 +1,15 @@
+class Solution {
+    public int[][] solution(int[] num_list, int n) {
+        int[][] answer = new int[num_list.length / n][n];
+        
+        for(int i = 0; i < num_list.length / n; i++) {
+            int[] array = new int[n];  // 1차원 배열 길이
+            
+            for(int j = 0; j < n; j++) {
+                array[j] = num_list[i * n + j]; // 2차원 배열 값
+            }
+            answer[i] = array;
+        }                
+        return answer;
+    }
+}
