@@ -1,0 +1,32 @@
+class Solution {
+    public String solution(String s) {
+        String answer = "";
+        
+        String[] strings = s.split(" ");  // 공백 기준 자르기
+        int[] nums = new int[strings.length];
+ 
+        for(int i = 0; i < strings.length; i++) {
+            nums[i] = Integer.parseInt(strings[i]); // 문자열 정수로 변환
+        }
+ 
+        int min = nums[0];
+        int max = nums[0];
+ 
+        for(int i = 0; i < nums.length; i++) {
+ 
+            // 최솟값
+            if(min > nums[i]) {
+                min = nums[i];
+            }
+ 
+            // 최댓값
+            if(max < nums[i]) {
+                max = nums[i];
+            }
+        }
+ 
+        answer = min +" "+ max;
+ 
+        return answer;
+    }
+}
