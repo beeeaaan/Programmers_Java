@@ -1,0 +1,17 @@
+class Solution {
+    public int solution(int n) {
+        int answer[] = new int[n + 1];
+        
+        for(int i = 0; i <= n; i++) {  // 0일 때
+            if(i == 0) {
+                answer[i] = 0;
+            } else if(i == 1) {  // 1일 때
+                answer[i] = 1;
+            } else {
+                int sum = answer[i - 2] + answer[i - 1];
+                answer[i] = sum % 1234567;  // int 자료형 범위 내 항상 값이 있을 수 있도록 함
+            }
+        }
+        return answer[n];
+    }
+}
