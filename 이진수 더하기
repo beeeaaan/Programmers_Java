@@ -1,0 +1,12 @@
+class Solution {
+    // parseInt(String 문자열, int 진수) -> 문자열 값을 10진수 int타입으로 변환
+    public String solution(String bin1, String bin2) {
+        String answer = "";
+        int num1 = Integer.parseInt(bin1, 2);
+        int num2 = Integer.parseInt(bin2, 2);
+        int res = num1+num2;
+        // toBinaryString : 정수값(여기서는 10진수)을 2진수로 변환
+        answer = Integer.toBinaryString(res);
+        return answer;
+    }
+}
