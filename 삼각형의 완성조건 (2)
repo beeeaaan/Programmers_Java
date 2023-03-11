@@ -1,0 +1,16 @@
+import java.util.Arrays;
+
+class Solution {
+    public int solution(int[] sides) {
+        int answer = 0;        
+        Arrays.sort(sides);  // 오름차순 정렬
+		
+		int sum = sides[0] + sides[1]; // 두 변의 길이의 합
+		
+		for (int i = sides[1] - sides[0] + 1; i < sides[0] + sides[1]; i++) {
+			answer++;
+		}
+        
+        return answer;
+    }
+}
