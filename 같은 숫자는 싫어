@@ -1,0 +1,23 @@
+import java.util.*;
+ 
+public class Solution {
+    public int[] solution(int[] arr) {
+        int[] answer = {};
+        ArrayList<Integer> newNumList = new ArrayList<Integer>();
+ 
+        // 첫번째 인덱스 값
+        newNumList.add(arr[0]);
+ 
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] != arr[i - 1]) // 이전 인덱스와 다를 경우
+                newNumList.add(arr[i]);
+        } 
+        // size() : 컬렉션 타입의 길이
+        answer = new int[newNumList.size()];
+ 
+        for (int i = 0; i < newNumList.size(); i++) {
+            answer[i] = newNumList.get(i);
+        } 
+        return answer;
+    }
+}
