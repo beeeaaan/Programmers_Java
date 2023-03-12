@@ -1,0 +1,21 @@
+class Solution {
+    public int solution(String[] spell, String[] dic) {
+        int answer = 2; // 존재하지 않는다면
+        int cnt = 0;
+		
+		for (int i = 0; i < dic.length; i++) {
+			cnt = 0;
+			for (int j = 0; j < spell.length; j++) {
+				if (dic[i].contains(spell[j])) {  // dic의 i에 spell의 j가 있다면
+					cnt++;
+					if (cnt == spell.length) {
+						answer = 1;  // spell이 모두 한번씩 있다면
+						break;
+					} 
+				}
+			}
+		}
+        
+        return answer;
+    }
+}
