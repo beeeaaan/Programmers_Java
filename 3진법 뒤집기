@@ -1,0 +1,15 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        String str="";
+        
+        // 0이 아니면 매개변수 3진수로 만들기
+        while(n != 0){
+            str += n % 3;
+            n /= 3;
+        }
+        
+        // 3진수를 10진수로 변환
+        return Integer.parseInt(str, 3);
+    }
+}
