@@ -1,0 +1,6 @@
+class Solution {
+    public int solution(int[] numbers, int k) {
+        // 한 명 건너뛰므로 2씩 증가하고 첫번째 공 던지는 건 항상 0번 인덱스이다
+        return numbers[2 * (k - 1) % numbers.length];
+    }
+}
