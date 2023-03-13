@@ -1,0 +1,17 @@
+class Solution {
+    public int solution(int chicken) {
+        int answer = 0;
+        int coupon = 0;
+        
+        // 치민 한마리당 쿠폰 한 장 -> 쿠폰 10장당 서비스 치킨 한 마리 + 쿠폰(서비스 치킨)
+        while(true) {
+            coupon = chicken / 10; 
+            chicken = chicken % 10 + coupon;  
+            answer += coupon;
+            if(chicken < 10) {
+                break;
+            }
+        }
+        return answer;
+    }
+}
