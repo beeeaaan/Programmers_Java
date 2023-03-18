@@ -1,0 +1,25 @@
+class Solution {
+    public String[] solution(String[] quiz) {
+        String[] answer = new String[quiz.length];
+        String[] x = new String[quiz.length];
+        
+        for(int i = 0; i < quiz.length; i++) {
+            x = quiz[i].split(" "); // 공백 기준으로 자르기
+            
+            if(x[1].equals("-")) { // 뺄셈 수식 확인
+                if(Integer.parseInt(x[0]) - Integer.parseInt(x[2]) == Integer.parseInt(x[4])) {
+                    answer[i] = "O"; // 옳으면
+                }else{
+                    answer[i] = "X"; // 틀리면
+                }
+            } else if(x[1].equals("+")) { // 덧셈 수식 확인
+                if(Integer.parseInt(x[0]) + Integer.parseInt(x[2]) == Integer.parseInt(x[4])) {
+                    answer[i] = "O"; // 옳으면
+                }else{
+                    answer[i] = "X";  // 틀리면
+                }
+            }
+        }
+        return answer;
+    }
+}
