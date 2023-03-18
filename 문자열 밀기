@@ -1,0 +1,18 @@
+class Solution {
+    public int solution(String A, String B) {
+        int answer = 0;
+        String newstr = A;
+
+        for (int i = 0; i < A.length(); i++) {
+            if (newstr.equals(B)) { // 일치하는지 확인하기
+                return answer;
+            }
+
+            String s = newstr.substring(newstr.length() - 1); // 마지막 문자 자르기
+            newstr = s + newstr.substring(0, newstr.length() - 1); // 마지막 문자와 마지막 문자 빠진 문자 합하기
+            answer++;
+        }
+
+        return -1; // B랑 일치하지 않으면
+    }
+}
