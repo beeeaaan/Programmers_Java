@@ -1,0 +1,20 @@
+class Solution {
+    public int solution(int balls, int share) {
+        long answer = 1;
+        int shareIndex = 1;
+        
+        // [문제풀이법]
+        // ex) n = 20, m = 5
+        // 분모는 분자와 함께 나눠 없앨 수 있다
+        // 분자의 경우 : 20 * 19 * 18 * 17 * 16
+        // 분모의 경우 : 5 * 4 * 3 * 2 * 1
+
+        for(int i = share + 1; i <= balls; i++){
+            answer *= i;
+            answer /= shareIndex;
+            shareIndex++;
+        }
+        
+        return (int)answer;
+    }
+}
