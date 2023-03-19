@@ -1,0 +1,18 @@
+class Solution {
+    public int[] solution(int n, int m) {
+        int max = Math.max(n, m); // 두 수 중 큰 수 비교하는 함수
+        int min = Math.min(n, m); // 두 수 중 작은 수 비교하는 함수
+
+        // 최대공약수(유클리드 호제법)
+        // 유클리드 호제법 : 2개의 자연수 a, b에 대해서 a를 b로 나눈 나머지를 x라고 하면 (단 a>b) a와 b의 최대공약수는 b와 x의 최대공약수와 같다
+        while(min != 0) {
+            int x = max % min;
+            max = min;
+            min = x;
+        }
+        // 최소공배수(두 수의 곱 / 최대공약수)
+        int y = n * m / max;        
+        int[] answer = {max, y};
+        return answer;
+    }
+}
