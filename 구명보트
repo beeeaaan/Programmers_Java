@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] people, int limit) {
+        int answer = 0;
+        Arrays.sort(people); // 오름차순 정렬
+        int index = 0; // 최소값 위치
+        
+        // 최소값의 위치가 최대값의 위치보다 커지면 종료
+        for (int i = people.length - 1; i >= index; i--) { // 최대값(맨 끝 숫자)
+            if (people[i] + people[index] <= limit) { // min의 값과 max의 값이 limit보다 작거나 같을 경우
+                index++;
+                answer++;
+            }
+            else {
+                answer++; // 혼자 탐
+            }
+        }        
+        return answer;
+    }
+}
