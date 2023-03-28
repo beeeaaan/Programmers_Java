@@ -1,0 +1,19 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(int denom1, int number1, int denom2, int number2) {
+        int[] answer = new int[2];
+        
+        // 최소공배수 : (a x b) / (최대공약수)
+        int top = number1 * denom2 + number2 * denom1;  // 분자
+        int bottom = number1 * number2;  // 분모
+        int x = 1;
+        
+        for(int i = 1; i <= bottom && i <= top; i++) {
+            if(bottom % i == 0 && top % i == 0) x = i;
+        }
+        answer[0] = top / x; 
+        answer[1] = bottom / x; 
+        return answer;
+    }
+}
