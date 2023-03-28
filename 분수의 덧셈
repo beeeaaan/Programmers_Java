@@ -12,6 +12,8 @@ class Solution {
         for(int i = 1; i <= bottom && i <= top; i++) {
             if(bottom % i == 0 && top % i == 0) x = i;
         }
+        
+        // 유클리드호제법
         answer[0] = top / x; 
         answer[1] = bottom / x; 
         return answer;
