@@ -1,0 +1,22 @@
+class Solution {
+    public int solution(int[][] dots) {
+        int answer = 0;
+        
+        // 가로 길이 : x1 ~ x4 중 최대값 - 최소값
+        // 세로 길이 : y1 ~ 4 중 최대값 - 최소값
+        int minx = dots[0][0];  // x좌표 최소값
+        int miny = dots[0][1];  // y좌표 최소값
+        int maxx = dots[0][0];  // x좌표 최대값
+        int maxy = dots[0][1];  // y좌표 최대값
+        
+        // Math함수 사용해 최대값, 최소값 구하기
+        for(int i = 1; i < dots.length; i++) {
+            minx = Math.min(minx, dots[i][0]);
+            miny = Math.min(miny, dots[i][1]);
+            maxx = Math.max(maxx, dots[i][0]);
+            maxy = Math.max(maxy, dots[i][1]);
+        }
+        answer = (maxx - minx) * (maxy - miny);  // 직사각형 넓이 : 가로 x 세로
+        return answer;
+    }
+}
