@@ -1,0 +1,18 @@
+class Solution {
+    public int[] solution(int brown, int yellow) {
+        int[] answer = new int[2];
+        
+        for(int i = 3; i < brown + yellow; i++){  // 노란색 격자 1부터 시작하므로 세로 3부터 시작
+            int width = (brown + yellow) / i;  // 가로 구하기
+            
+            if(width >= i){
+                 if ((i - 2) * (width - 2) == yellow) {  // yellow 개수
+                answer[0] = width;
+                answer[1] = i;
+                break;
+                }
+            }
+        }
+        return answer;
+    }
+}
