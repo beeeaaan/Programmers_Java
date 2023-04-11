@@ -1,0 +1,19 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length];  // return과 commands 크기 동일
+        
+        for(int i = 0; i < commands.length; i++){
+            int a, b, c;
+            a = commands[i][0];
+            b = commands[i][1];
+            c = commands[i][2];
+            // copyOfRange : 특정 범위 배열 복사(원본 배열, 복사하려는 시작 요소의 인덱스, 복사하려는 마지막 요소의 인덱스)
+            int[] temp = Arrays.copyOfRange(array, a - 1, b);
+            Arrays.sort(temp);
+            answer[i] = temp[c - 1];
+        }
+        return answer;
+    }
+}
