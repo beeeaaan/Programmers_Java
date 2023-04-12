@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int k, int[] tangerine) {
+        int size = 0;
+        
+        for (int t : tangerine) {  // tangerine에서 차례대로 객체를 꺼내서 t에 넣기
+            size = Math.max(t, size);  // 귤의 최대 크기 구하기
+        }
+        
+        int[] kind = new int[size + 1];  // 크기별 귤의 개수 저장하는 배열
+        
+        for (int i = 0; i < tangerine.length; i++) {
+            kind[tangerine[i]] += 1;  //인덱스 : 귤의 크기
+        }
+        
+        Arrays.sort(kind);  // 정렬
+        int sum = 0;  // k랑 비교할 현재 귤의 개 수
+        int cnt = 1;  // 귤 종류의 가짓수(answer)
+        
+        for (int i = size; i >= 1; i--) {  //kind 역순으로
+            sum += kind[i];  // kind의 원소 더해줌
+            
+            if (sum >= k) {  // 현재 귤의 개수 sum이 k 이상이 되면 break
+	             break;
+            }
+            cnt++;  //kind 원소 돌 때마다 cnt+1
+        }
+        return cnt;
+        
+    }
+}
