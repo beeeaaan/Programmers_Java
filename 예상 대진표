@@ -1,0 +1,18 @@
+class Solution
+{
+    public int solution(int n, int a, int b)
+    {
+        int answer = 0;
+        
+        // 토너먼트 대진표 : 두 팀씩 대결해 다음 라운드로 진출해 올라가는 팀은 절반으로 줄어들고 순서도 바뀜
+        while(true) { // 순서 정하는 규칙
+            a = a / 2 + a % 2;
+            b = b / 2 + b % 2;
+            answer ++;
+            
+            if (a == b)
+                break;
+        }
+        return answer;
+    }
+}
