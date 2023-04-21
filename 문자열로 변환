@@ -1,0 +1,9 @@
+class Solution {
+    public String solution(int n) {
+        String answer = "";
+        
+        // Integer.toString :  정수를 문자열로 변환
+        answer = Integer.toString(n);
+        return answer;
+    }
+}
