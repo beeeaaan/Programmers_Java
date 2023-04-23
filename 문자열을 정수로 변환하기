@@ -1,0 +1,9 @@
+class Solution {
+    public int solution(String n_str) {
+        int answer = 0;
+        
+        // Integer.parseInt : 정수로 변환
+        answer = Integer.parseInt(n_str);
+        return answer;
+    }
+}
