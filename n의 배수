@@ -1,0 +1,12 @@
+class Solution {
+    public int solution(int num, int n) {
+        int answer = 0;
+        
+        if(num % n == 0) { 
+            answer = 1;  // n의 배수이면
+        } else {
+            answer = 0;  // n의 배수가 아니라면
+        }
+        return answer;
+    }
+}
