@@ -1,0 +1,9 @@
+class Solution {
+    public String solution(String my_string, int n) {
+        String answer = "";
+        
+        // substring : 문자열 자르기(시작, 끝)
+        answer = my_string.substring(my_string.length() - n, my_string.length());
+        return answer;
+    }
+}
