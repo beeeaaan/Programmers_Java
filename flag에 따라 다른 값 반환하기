@@ -1,0 +1,9 @@
+class Solution {
+    public int solution(int a, int b, boolean flag) {
+        int answer = 0;
+        
+        // true면 더하기, false면 빼기
+        answer = flag == true ? a + b : a - b;
+        return answer;
+    }
+}
