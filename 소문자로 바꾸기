@@ -1,0 +1,8 @@
+class Solution {
+    public String solution(String myString) {
+        
+        // toLowerCase : 소문자 변환
+        String answer = myString.toLowerCase();
+        return answer;
+    }
+}
