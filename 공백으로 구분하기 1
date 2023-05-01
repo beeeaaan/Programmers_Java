@@ -1,0 +1,9 @@
+class Solution {
+    public String[] solution(String my_string) {
+        String[] answer = {};
+        
+        // split : 문자열 배열 분리
+        answer = my_string.split(" ");
+        return answer;
+    }
+}
