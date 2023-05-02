@@ -1,0 +1,9 @@
+class Solution {
+    public String solution(String my_string, String alp) {
+        String answer = "";
+        
+        // replace(기존 문자, 대체 문자) : 문자열 변경
+        answer = my_string.replace(alp, alp.toUpperCase());
+        return answer;
+    }
+}
