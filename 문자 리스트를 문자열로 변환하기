@@ -1,0 +1,9 @@
+class Solution {
+    public String solution(String[] arr) {
+        String answer = "";
+        
+        // join(배열 기준, 배열) : 문자열 변환
+        answer = String.join("", arr);
+        return answer;
+    }
+}
