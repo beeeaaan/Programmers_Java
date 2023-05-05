@@ -1,0 +1,11 @@
+class Solution {
+    public int solution(String num_str) {
+        int answer = 0;
+        
+        String[] num = num_str.split("");  // split로 문자열 잘라 베열 생성
+        for(int i = 0; i < num.length; i++) {
+            answer += Integer.parseInt(num[i]);  // 자리수 합
+        }
+        return answer;
+    }
+}
