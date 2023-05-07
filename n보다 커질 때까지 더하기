@@ -1,0 +1,14 @@
+class Solution {
+    public int solution(int[] numbers, int n) {
+        int answer = 0;
+        
+        for(int i = 0; i < numbers.length; i++){
+            answer += numbers[i];  // 원소의 합
+            if(answer > n){. // n보다 커질 때
+                break;
+            }
+        }
+        
+        return answer;
+    }
+}
