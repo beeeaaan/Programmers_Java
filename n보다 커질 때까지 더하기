@@ -7,8 +7,7 @@ class Solution {
             if(answer > n){. // n보다 커질 때
                 break;
             }
-        }
-        
+        }        
         return answer;
     }
 }
