@@ -1,0 +1,23 @@
+class Solution {
+    public int solution(int a, int b) {
+        int answer = 0;
+        // 붙이기 위해 문자열 변환
+        String str_A = Integer.toString(a);
+        String str_B = Integer.toString(b);
+        // 문자열 합치기
+        String ab = str_A + str_B;
+        String ba = str_B + str_A;
+        // 비교 위한 정수 변환
+        int num1 = Integer.parseInt(ab);
+        int num2 = Integer.parseInt(ba);
+        
+        if(num1 > num2) {  // a + b가 b + a보다 클 때
+            answer = num1;
+        } else if(num2 > num1) {  // b + a가 a + b보다 클 때
+            answer = num2;
+        } else if(num1 == num2) {  // a + b와 b + a가 같을 때
+            answer = num1;
+        }
+        return answer;
+    }
+}
