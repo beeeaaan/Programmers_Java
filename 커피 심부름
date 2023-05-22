@@ -1,0 +1,15 @@
+class Solution {
+    public int solution(String[] order) {
+        int answer = 0;
+        
+        // 향상된 for문 : for(자료형 변수명 : 배열명){문장}
+        for(String str : order) {
+            if(str.contains("cafelatte")){
+                answer += 5000;  // 카페라떼
+            }else{
+                answer += 4500;  // 아메리카노
+            }
+        }
+        return answer;
+    }
+}
