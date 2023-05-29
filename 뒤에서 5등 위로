@@ -1,0 +1,12 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(int[] num_list) {
+        int[] answer = {};       
+        Arrays.sort(num_list);  // 오름차순
+        
+        // Arrays.copyOfRange(원본 , 시작인덱스, 끝인덱스) : 복사(인덱스 0부터 시작)
+        answer = Arrays.copyOfRange(num_list, 5, num_list.length);
+        return answer;
+    }
+}
