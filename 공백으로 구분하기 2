@@ -1,0 +1,11 @@
+class Solution {
+    public String[] solution(String my_string) {
+        String[] answer = {};
+        
+        // trim : 공백 제거
+        // replaceAll("바꾸고 싶은 문자열 정규식", "치환할 문자") : 문자열 치환
+        // split(기준) : 자르기
+        answer = my_string.trim().replaceAll("\\s+", " ").split(" ");
+        return answer;
+    }
+}
