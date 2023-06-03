@@ -1,0 +1,16 @@
+class Solution {
+    public int[] solution(int[] arr, int n) {
+        
+        for(int i = 0; i < arr.length; i++) {
+            // arr 길이 짝수이면 홀수 인덱스에 n 더하기
+            if(arr.length % 2 == 0 && i % 2 != 0) {
+                arr[i] += n;
+            }
+            // arr 길이 홀수이면 짝수 인덱스에 n 더하기
+            if(arr.length % 2 != 0 && i % 2 == 0) {
+                arr[i] += n;
+            }
+        }
+        return arr;
+    }
+}
