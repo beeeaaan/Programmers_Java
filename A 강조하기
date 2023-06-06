@@ -1,0 +1,9 @@
+class Solution {
+    public String solution(String myString) {
+        String answer = "";
+        
+        myString = myString.toLowerCase();  // toLowerCase : 소문자로 변경
+        answer = myString.replace("a", "A");  // replace : 문자 바꾸기
+        return answer;
+    }
+}
