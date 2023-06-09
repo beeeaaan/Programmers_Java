@@ -1,0 +1,17 @@
+class Solution {
+    public int[] solution(String s) {
+        int[] answer = new int[s.length()];
+        answer[0] = -1;  // 맨 처음 글자 무조건 -1
+        
+        for(int i = 1; i < s.length(); i++) {
+            // lastIndexOf 사용하여 i - 1 기준으로 중복 확인
+            int str = s.lastIndexOf(s.substring(i, i + 1), i - 1);
+            if(str != -1) {
+                answer[i] = i - str;  // 기존 인덱스 위치에서 인덱스 값 빼기
+            } else {
+                answer[i] = str;  // -1 넣기
+            }
+        }
+        return answer;
+    }
+}
