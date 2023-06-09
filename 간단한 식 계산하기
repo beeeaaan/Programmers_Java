@@ -1,0 +1,20 @@
+class Solution {
+    public int solution(String binomial) {
+        int answer = 0;
+        
+        String [] bino = binomial.split(" ");  // 배열 만들기
+        int num1 = Integer.parseInt(bino[0]);  // 정수 변환
+        int num2 = Integer.parseInt(bino[2]);  // 정수 변환
+        String cal = bino[1];  // 연산 확인
+        
+        // 식 계산하기
+        if(cal.equals("+")) {
+            answer = num1 + num2;
+        } else if(cal.equals("-")) {
+            answer = num1 - num2;
+        } else {
+            answer = num1 * num2;
+        }
+        return answer;
+    }
+}
