@@ -1,0 +1,10 @@
+class Solution {
+    public String solution(String rny_string) {
+        String answer = "";
+        
+        // replaceAll('대상 문자열', '바꿀 문자열') : 대상 문자열 모두를 원하는 문자 값으로 변환하는 함수
+
+        answer = rny_string.replaceAll("m", "rn");
+        return answer;
+    }
+}
