@@ -1,0 +1,10 @@
+class Solution {
+    public int[] solution(int n, int k) {
+        int[] answer = new int[n / k];
+        
+        for(int i = 0; i < answer.length; i++) {  // k가 아닌 answer를 기준으로 해야 함
+            answer[i] = k * (i + 1);  // k의 배수
+        }
+        return answer;
+    }
+}
