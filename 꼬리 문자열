@@ -1,0 +1,13 @@
+class Solution {
+    public String solution(String[] str_list, String ex) {
+        String answer = "";
+        
+        for(int i = 0; i < str_list.length; i++) {
+            if(str_list[i].contains(ex)) {  // contains : 문자열 포함 확인
+                str_list[i] = str_list[i].replace(str_list[i], "");  // replace(특정 문자, 바꿀 문자) : 문자열 바꾸기
+            }
+            answer += str_list[i];
+        }
+        return answer;
+    }
+}
