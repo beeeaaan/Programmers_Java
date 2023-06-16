@@ -1,0 +1,9 @@
+class Solution {
+    public String solution(String n_str) {
+        String answer = "";
+
+        // replaceFirst(기존 문자, 바꿀 문자) : 처음 만난 문자만 변경
+        answer = n_str.replaceFirst("^0+(?!$)", "");
+        return answer;
+    }
+}
