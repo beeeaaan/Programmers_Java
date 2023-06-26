@@ -1,0 +1,8 @@
+class Solution {
+    public boolean solution(boolean x1, boolean x2, boolean x3, boolean x4) {
+        // true || false -> true,   false || false -> false (하나라도 true라면 true를 반환)
+        // AND 연산인 &&은 true && true -> true, true && false -> false (무조건 둘 다 true여야지 true를 반환)
+        boolean answer = (x1 || x2) && (x3 || x4);        
+        return answer;
+    }
+}
