@@ -1,0 +1,13 @@
+class Solution {
+    public String solution(int[] food) {
+        String answer = "0";
+
+        // 물을 중심으로 좌우 대칭(음식 갯수 / 2)
+        for (int i = food.length - 1; i > 0; i--) {
+            for (int j = 0; j < food[i] / 2; j++) {
+                answer = i + answer + i; 
+            }
+        }
+        return answer;
+    }
+}
