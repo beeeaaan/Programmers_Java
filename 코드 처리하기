@@ -1,0 +1,30 @@
+class Solution {
+    public String solution(String code) {
+        String answer = "";
+        int mode = 0;
+        
+        for(int i = 0; i < code.length(); i++) {
+            String x = code.substring(i, i + 1);
+            if(mode == 0) {  // 0이면서
+                if(!x.equals("1")) {  // 1이 아니고
+                    if(i % 2 == 0) {  // 2의 배수일 경우
+                        answer += x;  // 문자열 붙이기
+                    }
+                } else {
+                    mode = 1;
+                }
+            } else {
+                if(!x.equals("1")) {
+                    if(i % 2 == 1) {  // 홀수일 경우
+                        answer += x;
+                    }
+                } else {
+                    mode = 0;
+                }
+            }
+        } if(answer.equals("")) {  // 빈 값일 경우
+            answer = "EMPTY";
+        }
+        return answer;
+    }
+}
