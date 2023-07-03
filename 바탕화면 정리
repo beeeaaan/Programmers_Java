@@ -1,0 +1,26 @@
+class Solution {
+    public int[] solution(String[] wallpaper) {
+        int xMin = wallpaper[0].length(), xMax = 0;
+        int yMin = wallpaper.length, yMax = 0;
+        
+        for(int i = 0; i < wallpaper.length; i++) {
+            int firstLoc = wallpaper[i].indexOf("#");
+            int lastLoc = wallpaper[i].lastIndexOf("#");
+            
+            if(firstLoc >= 0) {  // 파일이 있는 경우
+                
+                // x축의 파일 시작, 종료 위치 계산
+                if(firstLoc < xMin) xMin = firstLoc;
+                if(lastLoc > xMax) xMax = lastLoc;
+                
+                // y축의 파일 시작, 종료 위치 계산
+                if(i < yMin) yMin = i;
+                if(i > yMax) yMax = i;
+            }
+        }
+        
+        // 각 축의 드레그를 해야 할 마지막(max) 좌표는 +1씩 해준다
+        int[] answer = {yMin, xMin, ++yMax, ++xMax};
+        return answer;
+    }
+}
