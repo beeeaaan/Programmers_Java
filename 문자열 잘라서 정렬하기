@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+class Solution {
+    public String[] solution(String myString) {
+        String[] splitArr = myString.split("x");
+        ArrayList<String> resultList = new ArrayList<>();
+        
+        for (String str : splitArr) {
+            if (!str.isEmpty()) {  // 비어 있지 않은 배열만 추가
+                resultList.add(str);
+            }
+        }
+        
+        String[] resultArr = resultList.toArray(new String[resultList.size()]);  // ArrayList에서 String[] 배열로 변환(size를 통해 크기 맞춤)
+        Arrays.sort(resultArr);  // 사전순으로 정렬
+     
+        return resultArr;
+    }
+}
+
+
+// length()와 size() 의 차이
+// length() : String클래스에서 사용되는 메서드. 호출된 문자열의 길이를 반환. String[] 배열에 사용하면 요소 개수를 반환.
+// size() : Collection 인터페이스를 구현한 컬렉션 클래스 (ArrayList, LinkedList, List 등) 에서 사용되는 메서드. 컬렉션의 요소 개수를 반환.
