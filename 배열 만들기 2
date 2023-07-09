@@ -1,0 +1,24 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int l, int r) {
+        List<Integer> list = new ArrayList<>();
+        
+        for(int i = l; i <= r; i++) {
+            String str = i + "";
+            int count = 0;
+            
+            for(int j = 0; j < str.length(); j++) {
+                if(str.charAt(j) == 48 || str.charAt(j) == 53) {
+                    count ++;  // 0이나 5일 경우
+                }
+            } if(count == str.length()) {  // 카운트가 str.length와 같을 경우
+                list.add(i);
+            }
+        }
+        int[] answer = list.stream().mapToInt(i -> i).toArray();  // List를 배열로 변환
+        int[] empty = {-1};  // 5로만 이루어진 정수 없을 경우
+        if(answer.length == 0) return empty;
+        return answer;
+    }
+}
