@@ -1,0 +1,19 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] intStrs, int k, int s, int l) {
+        List<Integer> result = new ArrayList<>();
+        
+        for (String str : intStrs) {
+            int i = Integer.parseInt(str.substring(s, s + l));  // 정수 변환
+            if (i > k) {
+                result.add(i);
+            }
+        }
+        // mapToInt : 스트림을 IntStream으로 변환
+        return result.stream().mapToInt(i -> i).toArray();
+    }
+}
+
+// map : 원하는 필드만 뽑아내거나 특정형태로 변환해야 할때 사용 
+// of : 배열을 소스로 하는 스트림을 생성할때 사용 
