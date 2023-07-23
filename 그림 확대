@@ -1,0 +1,27 @@
+class Solution {
+    public String[] solution(String[] picture, int k) {
+        String[] answer = cal(picture, k);
+        return answer;
+    }
+    
+    private static String[] cal(String[] picture, int k){
+        int size = picture.length;
+        String[] result = new String[k * size];
+        
+        for(int i = 0 ; i < k * size ; i++) {
+            if(i % k != 0) {
+                result[i] = result[i - 1];
+                continue;
+            }
+            // append() 메소드 사용하려면 StringBuffer 클래스 사용해야 함
+            StringBuilder sb = new StringBuilder();
+            
+            for(int j = 0 ; j < k * picture[i / k].length() ; j++) {
+                // append : 인수로 전달될 값 문자열 변환 후 문자열 마지막에 추가
+                sb.append(picture[i / k].charAt(j / k));
+            }
+            result[i] = sb.toString();
+        }
+        return result;
+    }
+}
