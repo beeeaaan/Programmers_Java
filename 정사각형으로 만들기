@@ -1,0 +1,13 @@
+class Solution {
+    public int[][] solution(int[][] arr) {
+        int max_size = Math.max(arr.length, arr[0].length);
+        int[][] answer = new int[max_size][max_size];
+        
+        for(int i = 0; i < arr.length; i++) {  // 행의 수가 많다면 열, 행의 수 같아지도록 행 끝에 0 추가
+            for(int j = 0; j < arr[i].length; j++) {  // 열의 수가 많다면 열, 행의 수 같아지도록 열 끝에 0 추가
+                answer[i][j] = arr[i][j];
+            }
+        }
+        return answer;
+    }
+}
