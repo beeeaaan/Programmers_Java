@@ -1,0 +1,14 @@
+class Solution {
+    public int[] solution(int[] arr, int[][] queries) {
+        for (int[] query : queries) {            
+            int i = query[0];
+            int j = query[1];
+            int h = arr[i];
+            
+            // arr[i]의 값과 arr[j]의 값 서로 바꾸기
+            arr[i] = arr[j];
+            arr[j] = h;
+        }
+        return arr;
+    }
+}
