@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String my_string, int[] indices) {
+        String answer = "";
+        
+        // my_string 문자열을 배열로 변환
+        String[] tmp = my_string.split("");
+        
+        // indices를 돌면서 지워야 할 값을 빈칸으로 만들기
+        for (int i = 0; i < indices.length; i++) {
+            tmp[indices[i]] = "";
+        }
+
+        // 문자열을 하나로 합치기(빈 공간은 붙어도 포함X, 단순 "")
+        for (String x : tmp) {
+            answer += x;
+        }
+        return answer;
+    }
+}
