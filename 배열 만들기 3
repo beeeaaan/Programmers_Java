@@ -1,0 +1,19 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(int[] arr, int[][] intervals) {
+        // Arrays.copyOfRange : 원본 배열과 같은 유형의 배열 복사
+        // copyOfRange(복사할 배열, 복사 시작 인덱스(포함), 복사 끝 인덱스(제외))
+        int[] interval1 = Arrays.copyOfRange(arr, intervals[0][0], intervals[0][1] + 1);
+        int[] interval2 = Arrays.copyOfRange(arr, intervals[1][0], intervals[1][1] + 1);
+
+        int[] answer = new int[interval1.length + interval2.length];
+
+        // System.arraycopy : 배열 간의 요소 복사
+        // System.arraycopy(복사할 원본 배열, 원본 배열의 복사 시작 인덱스, 복사된 요소 저장할 대상 배열, 복사된 대상 배열에서 복사 시작할 인덱스, 복사라 요소 갯수)
+        System.arraycopy(interval1, 0, answer, 0, interval1.length);
+        System.arraycopy(interval2, 0, answer, interval1.length, interval2.length);
+
+        return answer;
+    }
+}
