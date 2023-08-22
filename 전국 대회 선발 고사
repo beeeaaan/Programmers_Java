@@ -1,0 +1,27 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] rank, boolean[] attendance) {
+        int answer = 0;
+        
+        PriorityQueue<int[]> pq = new PriorityQueue<>((v1,v2) -> {
+            return v1[1] - v2[1];
+        });
+        
+        int size = rank.length;
+        
+        for(int i = 0 ; i < size ; i++) {
+            if(attendance[i]) {
+                // offer : 해당 큐 맨 뒤에 값 삽입
+                pq.offer(new int[]{i, rank[i]});
+            }
+            
+        } for(int i = 0 ; i < 3 ; i++) {
+            answer *= 100;
+            // poll : 큐 맨 앞에 있는 값 반환 후 삭제
+            int[] now = pq.poll();
+            answer += now[0];
+        }
+        return answer;
+    }
+}
