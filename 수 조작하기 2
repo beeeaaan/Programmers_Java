@@ -1,0 +1,24 @@
+class Solution {
+    public String solution(int[] numLog) {
+        StringBuilder x = new StringBuilder();
+        
+        for (int i = 1; i < numLog.length; i++) {
+            int diff = numLog[i] - numLog[i - 1];
+            
+            // "w" : 수에 1을 더하기
+            if (diff == 1) {
+                x.append("w");
+            // "s" : 수에 1을 빼기
+            } else if (diff == -1) {
+                x.append("s");
+            // "d" : 수에 10을 더하기
+            } else if (diff == 10) {
+                x.append("d");
+            // "a" : 수에 10을 빼기
+            } else if (diff == -10) {
+                x.append("a");
+            }
+        }
+        return x.toString();
+    }
+}
