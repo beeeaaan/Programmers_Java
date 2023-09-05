@@ -1,0 +1,19 @@
+class Solution {
+    public int solution(String s) {
+        int answer = 0;
+        char c = s.charAt(0);  // 첫번째 문자 추출
+        int idx = 0;  // 처음나온 문자의 개수
+        int jdx = 0;  // 처음나온 문자가 아닌 문자의 개수
+
+        for (int i = 0; i < s.length(); i++) {
+            if (idx == jdx) {  // 처음나온 문자의 개수와 처음나온 문자가 아닌 문자의 개수가 동일할 때
+                answer++;  // 문자열을 분리하기 때문에 answer 증가
+                c = s.charAt(i);  // 첫번째 문자 저장
+            }
+            if (s.charAt(i) == c) // 추출한 첫번째 문자와 동일할 경우
+                idx++;
+            else jdx++;  // 첫번째 문자가 아닐 경우
+        }
+        return answer;
+    }
+}
