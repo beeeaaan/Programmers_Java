@@ -1,0 +1,28 @@
+class Solution {
+    public int solution(int[] arr) {
+        int answer = 0;
+        int count = 0;
+        int[] beforArr = new int[arr.length];
+        
+        // 반복문 카운트가 배열의 길이와 같아질때까지
+        while(count != arr.length) {
+            count = 0;
+            // clone : 자신을 복제하여 새로운 인스턴스를 생성
+            beforArr = arr.clone();
+            
+            for(int i = 0; i < arr.length; i++) {
+            // 50보다 크거나 작은 짝수
+            if(arr[i] % 2 == 0 && arr[i] >= 50) {
+                arr[i] /= 2;
+            // 50보다 작은 홀수
+            } else if(arr[i] % 2 != 0 && arr[i] < 50) {
+                arr[i] = arr[i] * 2 + 1;
+            } 
+            // 전배열과 현배열의 요소 비교
+            if(arr[i] == beforArr[i]) count++;
+        }
+            answer++;
+        }        
+        return answer - 1;
+    }
+}
