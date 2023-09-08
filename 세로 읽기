@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String my_string, int m, int c) {
+        List<String> string_list = new ArrayList<>();
+        
+        // my_string을 한 줄에 m 글자씩 가로로 적었을 때 
+        for (int i = 0; i < my_string.length(); i += m) {
+            String sb = my_string.substring(i, i + m);
+            string_list.add(sb);
+        }        
+        String answer = "";
+        
+        // 왼쪽부터 세로로 c번째 열에 적힌 글자들
+        for (String str : string_list) {
+            answer += str.substring(c - 1, c);
+        }
+        
+        return answer;
+    }
+}
