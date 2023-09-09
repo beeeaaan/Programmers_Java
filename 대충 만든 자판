@@ -1,0 +1,41 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public int[] solution(String[] keymap, String[] targets) {
+        // 입력 가능한 키와 입력하기 위한 최소 버튼 입력 횟수
+        Map<Character, Integer> keyMapCount = new HashMap<>();
+        for (String keys : keymap) {
+            int key_Length = keys.length();
+            
+            for (int i = 0; i < key_Length; i++) {
+                char key = keys.charAt(i);
+                int min = Math.min(i + 1, keyMapCount.getOrDefault(key, Integer.MAX_VALUE));
+                keyMapCount.put(key, min);
+            }
+        }
+
+        // 입력 해야 하는 문자열에 대한 최소 버튼 입력 횟수 구하기
+        int[] answer = new int[targets.length];
+        
+        for (int target_Index = 0; target_Index < targets.length; target_Index++) {
+            String target = targets[target_Index];
+            int target_Length = target.length();
+            int count = 0;
+            
+            for (int i = 0; i < target_Length; i++) {
+                char text = target.charAt(i);
+                int value = keyMapCount.getOrDefault(text, -1);
+                
+                if (value == -1) {  // 입력이 불가능한 문자가 포함된 경우
+                    count = -1;
+                    break;
+                } else {
+                    count += value;
+                }
+            }
+            answer[target_Index] = count;
+        }
+        return answer;
+    }
+}
