@@ -1,0 +1,42 @@
+import java.util.HashMap;
+
+class Solution {
+    public String solution(String[] survey, int[] choices) {
+        String answer = "";        
+        int [] score = {3, 2, 1, 0, 1, 2, 3};		
+		HashMap<Character, Integer> type = new HashMap<>();
+		type.put('R', 0);
+		type.put('T', 0);
+		type.put('C', 0);
+		type.put('F', 0);
+		type.put('J', 0);
+		type.put('M', 0);
+		type.put('A', 0);
+		type.put('N', 0);
+		
+		for(int i = 0; i < survey.length; i++) {
+			char one = survey[i].charAt(0);  //첫번째 문자 추출
+			char two = survey[i].charAt(1);  //첫번째 문자 추출
+			if(choices[i] > 4) {  //선택이 4보다 크면 두번째 유형에 더 높은 점수를 준거
+				type.put(two, type.get(two) + score[choices[i] - 1]);  //해당 타입에 더해주기
+			} else {
+				type.put(one, type.get(one) + score[choices[i] - 1]);  //해당 타입에 더해주기
+			}
+		}
+		
+		answer += typeCheck(type, 'R', 'T');
+		answer += typeCheck(type, 'C', 'F');
+		answer += typeCheck(type, 'J', 'M');
+		answer += typeCheck(type, 'A', 'N');	
+        
+        return answer;
+    }    
+    
+    public char typeCheck(HashMap<Character, Integer> type, char one , char two) {
+		if(type.get(one) >= type.get(two)) {  // 둘다 0이거나 같으면 알파벳 앞에께 우선임
+			return one;
+		} else {
+			return two;
+		}
+	}
+}
