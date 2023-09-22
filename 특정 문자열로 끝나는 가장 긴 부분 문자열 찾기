@@ -1,0 +1,10 @@
+class Solution {
+    public String solution(String myString, String pat) {
+        String answer = "";
+        // lastIndexOf : pat로 끝나는 가장 긴 부분 문자열을 찾기 
+        int x = myString.lastIndexOf(pat);
+        
+        answer = myString.substring(0, x) + pat;
+        return answer;
+    }
+}
