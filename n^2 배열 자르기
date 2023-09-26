@@ -1,0 +1,14 @@
+import java.util.*;
+
+class Solution {
+    public  List<Long> solution(int n, long left, long right) {        
+        List<Long> list = new ArrayList<>();
+        
+        // 1. Max(행,열) 의 idx값이 그 자리의 값
+        // 2. Left에서 Right까지 순회하면서 Max(행,열)을 반환
+        for(long i = left; i < right + 1; i++) {
+             list.add(Math.max(i / n,i % n) + 1);
+        }        
+        return list;
+    }
+}
