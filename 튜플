@@ -1,0 +1,24 @@
+import java.util.*;
+ 
+class Solution {
+    public static int[] solution(String s) {        
+        StringTokenizer st = new StringTokenizer(s, "},{");  // 숫자만 자르기         
+        HashMap<Integer, Integer> num = new HashMap<Integer, Integer>();  // 숫자 나온 횟수 세기
+        
+        while (st.hasMoreTokens()) {
+            int n = Integer.parseInt(st.nextToken());
+            num.put(n, num.containsKey(n) ? num.get(n) + 1 : 1);
+        }
+ 
+        // 횟수기준 내림차순 정렬
+        List<Integer> keySet = new ArrayList<Integer>(num.keySet());
+        Collections.sort(keySet, (v1, v2) -> (num.get(v2) - num.get(v1)));
+ 
+        int[] answer = new int[keySet.size()];
+        
+        for (int i = 0; i < keySet.size(); i++)
+            answer[i] = keySet.get(i);
+ 
+        return answer;
+    }
+}
