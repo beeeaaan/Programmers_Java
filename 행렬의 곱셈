@@ -1,0 +1,18 @@
+class Solution {
+    public int[][] solution(int[][] arr1, int[][] arr2) {
+        // answer[arr1의 행의 길이][arr2의 열의 길이] 2차원 배열 생성
+        int[][] answer = new int[arr1.length][arr2[0].length];
+        
+        // i는 answer의 행을 참조, j는 answer의 열을 참조
+        for(int i = 0;i<answer.length;i++){
+            for(int j = 0;j<answer[i].length;j++){
+                // k는 arr1과 arr2가 가지고 있는 순서쌍의 개수(arr1의 열의 길이 = arr2의 행의 길이)
+                for(int k =0;k<arr1[i].length;k++){
+                    // answer[i][j] = arr1은 행이 고정된 채로 열이 증가, arr2는 열이 고정된 채로 행이 증가의 누적값
+                    answer[i][j] += arr1[i][k] * arr2[k][j];
+                }       
+            }
+        }        
+        return answer;
+    }
+}
