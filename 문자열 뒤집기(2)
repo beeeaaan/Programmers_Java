@@ -1,0 +1,12 @@
+class Solution {
+    public String solution(String my_string, int s, int e) {
+        
+        String answer = my_string.substring(s, e + 1);  // 해당 String 뽑기 
+        StringBuffer sb = new StringBuffer(answer);
+        String reversedStr = sb.reverse().toString();  //뒤집어서 다른 변수에 저장하기
+        
+        // 원본을 뒤집은 걸로 대체하기
+        my_string = my_string.replaceAll(answer, reversedStr);
+        return my_string;
+    }
+}
