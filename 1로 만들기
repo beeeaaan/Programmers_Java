@@ -1,0 +1,20 @@
+class Solution {
+    public int solution(int[] num_list) {
+        int answer = 0;
+        
+        // 1이 될때까지 나누기
+        for (int num : num_list) {
+            while (num != 1) {
+                // 짝수일 경우 2로 나누기
+                if (num % 2 == 0) {
+                    num /= 2;
+                    // 홀수일 경우 1 빼고 2로 나누기
+                } else {
+                    num = (num - 1) / 2;
+                }
+                answer++;
+            }
+        }        
+        return answer;
+    }
+}
