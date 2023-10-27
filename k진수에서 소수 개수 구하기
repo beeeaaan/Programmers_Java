@@ -1,0 +1,44 @@
+import java.util.*;
+
+class Solution {
+    static int answer;
+    public int solution(int n, int k) {
+        answer = 0;
+        // 진수 변환후 배열로 만들기
+        String[] arr = Integer.toString(n, k).split("0");
+        
+        for (int i = 0; i < arr.length; i++) {
+            // 빈 문자열일 경우 통과
+            if(arr[i].equals("")) continue;
+            // 소수 판별 메서드 호출
+            isPrimeNumber(arr[i]);
+        }
+        return answer;
+    }
+    
+    // 소수 판별 메서드
+    static void isPrimeNumber(String prime) {
+        // 오버플로우 방지 위해 long으로 선언
+        long n = Long.parseLong(prime);
+        
+        // 1은 소수가 아니므로 return
+        if(n <= 1) {
+            return;
+        }
+        
+        // 에라토스테네스의 채로 소수 판별
+        boolean check = false;
+        
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if(n % i == 0) {
+                check = true;
+                break;
+            }
+        }
+        
+        // 소수일 경우
+        if(!check) {
+            answer++;
+        }
+    }
+}
