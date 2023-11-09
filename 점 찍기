@@ -1,0 +1,10 @@
+class Solution {
+    public long solution(long k, long d) {
+        long answer = 0;
+
+        for(long i = 0; i <= d; i += k){  // x축 : d 넘기지 않을때까지 k씩 더하며 탐색
+            long max_i = (long) Math.sqrt(d * d - i * i);  // y축 : max_i 구하기
+            answer += max_i / k + 1;
+        }        
+        return answer;
+    }
