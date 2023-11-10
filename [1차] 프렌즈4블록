@@ -1,0 +1,85 @@
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Solution {
+	static private char[][] arr;
+	static private int answer = 0;
+	static private class Vertex{
+		int x, y;
+		public Vertex(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+	}
+    
+    public static int solution(int m, int n, String[] board) {
+        arr = new char[m][n];
+        for(int i = 0; i < board.length; i++) {
+        	char[] temp = board[i].toCharArray();
+        	for(int j = 0; j < temp.length; j++) {
+        		arr[i][j] = temp[j];
+        	}
+        }
+        
+        while(true) {
+        	// 2x2되는 블록들 전부 지우고 검사하기
+        	// 검사 : 블록이 지워졌는지 안지워졌는지 확인
+        	// 만약 안지워졌을 경우 false 반환 == 더이상 지울 블록이 없다
+        	if(!removeAndCheck()) break;
+        	downArr();  // 블록 내리기.
+        }        
+        return answer;
+    }
+    
+    // 블록 삭제 및 검사
+    public static boolean removeAndCheck() {
+    	int cnt=0;  // 이번 턴에 지운 블록 개수
+    	HashSet<Vertex> set = new HashSet<>();  // 지울 블록들 위치 저장
+    	
+    	// 처음부터 끝까지 2x2 블록 있는 탐색
+    	for(int i = 0; i < arr.length - 1; i++) {
+    		for(int j = 0; j < arr[0].length - 1; j++) {
+    			if(arr[i][j] == '.') continue;  //이미 지운 블록 건너뛰기
+    			// 같은 블록들이 2x2 이룰때 set에 위치 저장
+    			if(arr[i][j] == arr[i][j + 1] && arr[i][j+1] == arr[i + 1][j + 1] && arr[i + 1][j + 1] == arr[i + 1][j]) {
+    				set.add(new Vertex(i, j));
+    				set.add(new Vertex(i, j+1));
+    				set.add(new Vertex(i + 1, j + 1));
+    				set.add(new Vertex(i + 1, j));
+    			}
+    		}
+    	}
+    	
+    	Iterator<Vertex> iter = set.iterator();
+    	// 저장된 위치가 있을 경우 하나씩 뽑으면서 블록 삭제 및 카운트 증가
+    	while(iter.hasNext()) {
+    		Vertex v = iter.next();
+    		if(arr[v.x][v.y] == '.') continue;
+    		else if(arr[v.x][v.y] != '.') {
+    			cnt++;
+    			arr[v.x][v.y] = '.';
+    		}
+    	}    	
+    	answer+=cnt;
+    	
+    	if(cnt == 0) return false;
+    	return true;
+    }
+    
+    // 블록 내리기
+    public static void downArr() {
+    	// 0열부터 탐색
+    	for(int j = 0; j < arr[0].length; j++) {
+    		int space = 0;  // 중간에 비워져있는 공간 개수
+    		for(int i = arr.length - 1; i >= 0; i--) {
+    			// 빈공간 나올때마다 space 증가
+    			if(arr[i][j] == '.') space++;
+    			// 블록 있고, 이전에 빈 공간이 있었을 경우 빈 공간만큼 블록 내리고 원래 위치 빈공간으로 만들기
+    			else if(arr[i][j] != '.' && space != 0) {
+    				arr[i + space][j] = arr[i][j];
+    				arr[i][j] = '.';
+    			}
+    		}
+    	}
+    }
+}
