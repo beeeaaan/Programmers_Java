@@ -1,0 +1,19 @@
+public class Solution {
+
+    private static final int MOD = 1000000007;
+
+    public int solution(int n) {
+        int[] tiles = new int[n + 1];        
+        tiles[1] = 1;
+        tiles[2] = 2;
+
+        // n이 1일 경우 가로로만 배치할 수 있기 때문에 배치할 수 있는 경우는 한 가지만 존재
+        // n이 2일 경우 가로로 배치하고 세로로도 배치할 수 있기 때문에 배치할 수 있는 경우는 두 가지가 존재
+        // n이 3일 경우 n == 1일 때 배치할 수 있는 가지 수와 n == 2일 때 배치할 수 있는 가지 수를 더한 값과 같음
+        for (int i = 3; i <= n; i++) {
+            tiles[i] = (tiles[i - 1] + tiles[i - 2]) % MOD;
+        }
+
+        return tiles[n];
+    }
+}
