@@ -1,0 +1,54 @@
+class Solution {
+    public int solution(int n, int[][] wires) {
+        int answer = 9999;        
+        int startNode = 1;  // 탐색 시작 노드 설정
+
+        // i번째 간선 정보 무시하고 탐색 진행
+        for (int i = 0; i < wires.length; i++) {            
+            int[][] arr = getDividedTree(n, wires, i);  // i번째 간선으로 주어진 전선을 잘랐을 때 각 노드의 연결 정보            
+            boolean[] visited = new boolean[n + 1];  // 방문한 노드 정보
+
+            // 탐색 시작 노드부터 탐색 수행
+            dfs(startNode, visited, arr);
+
+            // 방문한 노드 수 카운트
+            int visitedCount = getVisitedCount(visited);
+            // 두 전력망의 송전탑 개수 차이(절대값)
+            int sub = Math.abs(visitedCount - (n - visitedCount));
+            // 기존 값과 비교하여 더 작은 값으로 저장
+            answer = Math.min(answer, sub);
+        }
+        return answer;
+    }
+
+    // 전선 1개를 잘랐을 때의 인접 노드 테이블
+    private int[][] getDividedTree(int n, int[][] wires, int ignoreNode) {
+        int[][] arr = new int[n + 1][n + 1];
+        for (int j = 0; j < wires.length; j++) {
+            if (j != ignoreNode) {
+                arr[wires[j][0]][wires[j][1]] = 1;
+                arr[wires[j][1]][wires[j][0]] = 1;
+            }
+        }
+        return arr;
+    }
+
+    // 깊이 우선 탐색
+    private void dfs(int node, boolean[] visited, int[][] arr) {
+        visited[node] = true;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[node][i] == 1 && !visited[i]) {
+                dfs(i, visited, arr);
+            }
+        }
+    }
+
+    // 방문한 노드 수 카운트
+    private int getVisitedCount(boolean[] visited) {
+        int visitedCount = 0;
+        for (boolean b : visited) {
+            if (b) visitedCount++;
+        }
+        return visitedCount;
+    }
+}
