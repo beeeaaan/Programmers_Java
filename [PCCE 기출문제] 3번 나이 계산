@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int year = sc.nextInt();
+        String age_type = sc.next();
+        int answer = 0;
+
+        if (age_type.equals(// 빈 칸)) {
+  `                          "Korea"  // 답
+            answer = // 빈 칸
+                    (2030 - year) + 1;  // 답
+        }
+        else if (age_type.equals(// 빈 칸)) {
+                                  "Year"  // 답
+            // 빈 칸
+            answer = 2030 - year;  // 답
+        }
+
+        System.out.println(answer);
+    }
+}
