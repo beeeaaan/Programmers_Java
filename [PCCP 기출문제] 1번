@@ -1,0 +1,27 @@
+class Solution {
+    public int solution(int[] bandage, int health, int[][] attacks) {        
+        int life = health;
+        int attackIdx = 0;
+        int heal = 0;
+        
+        for (int i = 1; i <= attacks[attacks.length-1][0]; i++){
+            // 공격 받지 않았을 경우: 체력 증가 , 연속 성공횟수 증가, 연속 성공이 시전 시간과 같은지 확인, 최대 체력을 넘지 않도록 조절
+            if (i != attacks[attackIdx][0]) {
+                life += bandage[1];
+                heal++;
+                if (heal == bandage[0]){
+                    life += bandage[2];
+                    heal = 0;
+                } if (life > health) life = health;
+                // 공격을 받았을 경우: 연속 성공횟수 초기화, 체력 감소, 공격 idx 증가, 체력 0 이하시 -1 리턴
+            } else {
+                heal = 0;
+                life -= attacks[attackIdx][1];
+                attackIdx++;
+                if (life <= 0) return -1;
+            }
+        }
+        // 남은 체력
+        return life;
+    }
+}
