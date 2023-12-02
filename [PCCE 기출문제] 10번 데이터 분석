@@ -1,0 +1,19 @@
+import java.util.*;
+
+class Solution {
+    public int[][] solution(int[][] data, String ext, int val_ext, String sort_by) {
+        
+        // column들의 순서와 컬럼명을 매핑 시킬 수 있는 값 필요
+        Map<String, Integer> colOrder = new HashMap<>();
+        colOrder.put("code", 0);
+        colOrder.put("date", 1);
+        colOrder.put("maximum", 2);
+        colOrder.put("remain", 3);
+        
+        // 필터링과 정렬을 각각 람다식 사용
+        int[][] filteredData = Arrays.stream(data).filter(x -> x[colOrder.get(ext)] < val_ext).toArray(int[][]::new);
+        Arrays.sort(filteredData, (o1, o2) ->  o1[colOrder.get(sort_by)] - o2[colOrder.get(sort_by)]);
+
+        return filteredData;
+    }
+}
