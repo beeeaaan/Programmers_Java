@@ -1,0 +1,17 @@
+class Solution {
+    public int solution(String[][] board, int h, int w) {
+        int count = 0;  // 같은 색으로 색칠된 칸의 개수
+        int[][] ds = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};  // 변화량 저장 리스트
+        int n = board.length;  // 정수 저장할 변수
+        
+        for (int[] d : ds) {            
+            int h_check = h + d[0];  // h 좌표
+            int w_check = w + d[1];  // w 좌표
+            
+            if (h_check < 0 || h_check >= n || w_check < 0 || w_check >= n ) continue;
+            if (board[h][w].equals(board[h_check][w_check])) count++;
+        }
+
+        return count;
+    }
+}
