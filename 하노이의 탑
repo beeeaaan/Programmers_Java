@@ -1,0 +1,23 @@
+import java.util.*;
+
+class Solution {
+    private static List<int[]> arr = new ArrayList<>();  // 이동 정보 저장
+    
+    public int[][] solution(int n) {
+        move(n, 1, 2, 3);
+        int[][] answer = arr.stream()
+                .toArray(int[][]::new);
+        return answer;
+    }
+
+    // cnt(이동할 원판 개수)개를 start(출발지)에서 end(도착지)로 이동(필요 시 mid(경유지)를 경유하며)
+    private static void move(int cnt, int start, int mid, int end) {
+        if (cnt == 0) {
+            return;
+        }
+        // 재귀 이용하여 점화식 작성
+        move(cnt - 1, start, end, mid);
+        arr.add(new int[]{start, end});
+        move(cnt - 1, mid, start, end);
+    }
+}
