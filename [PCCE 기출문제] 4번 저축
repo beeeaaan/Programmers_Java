@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int start = sc.nextInt();
+        int before = sc.nextInt();
+        int after = sc.nextInt();
+
+        int money = start;
+        int month = 1;
+        while (money < 70) {
+            money +=  // 빈 칸
+                    before;  // 답
+            month++;
+        }
+        while (  // 빈 칸
+                money < 100) {  // 답
+            // 빈 칸
+            money += after;
+            month++;
+        }
+
+        System.out.println(month);
+    }
+}
