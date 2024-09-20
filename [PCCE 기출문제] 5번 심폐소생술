@@ -1,0 +1,16 @@
+class Solution {
+    public int[] solution(String[] cpr) {
+        int[] answer = {0, 0, 0, 0, 0};
+        String[] basic_order = {"check", "call", "pressure", "respiration", "repeat"};
+
+        for(int i=0; i< ____ ; i++){  // 정답 : cpr.length
+            for(int j=0; j< ____ ; j++){  // 정답 : basic_order.length
+                if(cpr[i].equals(basic_order[j])){
+                    answer[i] = ____ ;  // 정답 : j + 1
+                    break;
+                }
+            }
+        }
+        return answer;
+    }
+}
