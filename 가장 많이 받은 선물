@@ -1,0 +1,37 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String[] friends, String[] gifts) {
+		Map<String, Integer> map = new HashMap<>();
+
+		for (int i = 0; i < friends.length; i++) {
+			map.put(friends[i], i);
+		}
+        
+		int[] index = new int[friends.length];  // 선물지수를 저장할 배열
+		int[][] record = new int[friends.length][friends.length];  // 선물 교환을 저장할 배열
+        
+		for (String str : gifts) {
+			String[] cur = str.split(" ");
+			index[map.get(cur[0])]++;
+			index[map.get(cur[1])]--;
+			record[map.get(cur[0])][map.get(cur[1])]++;
+		}
+		int answer = 0;
+        
+		for (int i = 0; i < friends.length; i++) {
+			int x = 0;
+            
+			for (int j = 0; j < friends.length; j++) {
+				if (i == j)  //중복제거
+					continue;
+				if (record[i][j] > record[j][i])  // 준 개수가 많을 경우 다음 달 받을 선물 증가 
+					x++;
+				else if (record[i][j] == record[j][i] && index[i] > index[j])  // 같을 경우 index 비교하고 다음 달 받을 선물 증가
+					x++;
+			}
+			answer = Math.max(x, answer);
+		}
+        return answer;
+    }
+}
