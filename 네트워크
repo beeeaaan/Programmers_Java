@@ -1,0 +1,29 @@
+class Solution {
+    static boolean[] visit;
+
+    public int solution(int n, int[][] computers) {
+        int answer = 0;
+        visit = new boolean[n];  // 방문 여부
+        
+        for (int i = 0; i < n; i++) {
+            // 방문하지 않은 컴퓨터일 경우
+            if (!visit[i]){
+                // 네트워크 개수 증가
+                dfs(i, computers, visit);
+                answer++;
+            }
+        }
+        return answer;
+    }
+    
+    public void dfs(int node, int[][] computers, boolean[] visit) {
+        visit[node] = true;
+        
+        for (int i = 0; i < computers[node].length; i++) {
+            // 현재 노드와 연결된 컴퓨터이고 방문하지 않은 경우
+            if (computers[node][i] == 1 && !visit[i]) {
+                dfs(i, computers, visit); // 재귀적 탐색
+            }
+        }
+    }
+}
