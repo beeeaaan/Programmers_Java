@@ -1,0 +1,35 @@
+class Solution {
+    private static int[] board;
+    private static int answer;
+
+    public int solution(int n) {
+        board = new int[n];  // 배열 : 해당 행의 queen이 있는 열
+        back_Tracking(0, n);
+        return answer;
+    }
+    
+    private static void back_Tracking(int dep, int n) {  // dep : 행
+        if (dep == n) {
+            answer++;
+            return;
+        }
+        
+        for (int i = 0; i < n; i++) {
+            board[dep] = i;  // 해당 dep(행), i(열)에 queen 놓을 수 있는지 확인
+
+            if (valid(dep)) {
+                back_Tracking(dep + 1, n);
+            }
+        }
+    }
+    
+    private static boolean valid(int i) {
+        for (int j = 0; j < i; j++) {  
+            // 마지막으로 놓여진 값과 이전의 값들 비교
+            if (board[i] == board[j]) return false;
+            if (Math.abs(i - j) == Math.abs(board[i] - board[j])) return false;
+        }
+        
+        return true;
+    }
+}
