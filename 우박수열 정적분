@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Solution {
+    public double[] solution(int k, int[][] ranges) {
+        double[] answer = new double[ranges.length];
+        
+        List<Integer> col_list = new ArrayList<>();  // 콜라츠 추측 리스트
+        col_list.add(k);
+        
+        // 콜라츠 추측 나머지 구하기
+        while(k > 1) {
+            if(k % 2 == 0) {
+                k /= 2;
+            } else {
+               k = k * 3 + 1;
+            }
+            
+            col_list.add(k);
+        }
+        
+        for(int i = 0; i < ranges.length; i++) {
+            // 현재 ranges의 정적분 범위 구하기
+            int ran_start = ranges[i][0];
+            int ran_end = col_list.size() - 1 + ranges[i][1];
+            
+            // 시작 범위가 끝 범위 보다 클 경우
+            if(ran_start > ran_end) {
+                answer[i] = -1;
+                continue;
+            }
+            
+            double sum = 0;
+            
+            // 사다리꼴 넓이 구하고 sum에 더하기
+            for(int j = ran_start; j < ran_end; j++) {
+                double now = col_list.get(j);
+                double target = col_list.get(j + 1);
+                sum += (now + target) / 2;
+            }
+            
+            answer[i] = sum;
+        }
+        
+        return answer;
+    }
+}
