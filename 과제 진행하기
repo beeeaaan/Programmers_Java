@@ -1,0 +1,90 @@
+import java.util.*;
+
+class Solution {
+    
+    public class Subject{
+        public String name;
+        public int time;
+        public int proTime;
+        
+        public Subject(String name, String time, String proTime) {
+            this.name = name;
+            this.time = changeMinute(time);
+            this.proTime = Integer.parseInt(proTime);
+        }
+        
+        public int changeMinute(String time) {
+            String[] timeArr = time.split(":");
+            int hour = Integer.parseInt(timeArr[0]);
+            int min = Integer.parseInt(timeArr[1]);
+
+            return hour * 60 + min;
+        }
+    }
+    
+    public String[] solution(String[][] plans) {
+        
+        // 오름차순 정렬
+        PriorityQueue<Subject> subjects = new PriorityQueue<>((s1, s2)-> s1.time - s2.time);
+        Stack<Subject> waitSubjects = new Stack<>();
+        List<String> compleSubjects = new ArrayList<>();
+        
+        for(int i = 0; i < plans.length;i++) {
+            subjects.add(new Subject(plans[i][0], plans[i][1], plans[i][2]));
+        }
+        
+        Subject currSubject = subjects.poll();
+        int currTime = currSubject.time;
+        boolean flag = true;
+        
+        while(flag) {            
+            int minTime = 0;
+            boolean Processing = true;
+            
+            while(true) {                
+                // 처리가 완료된 경우
+                if( minTime == currSubject.proTime ) {
+                    compleSubjects.add(currSubject.name);
+                    Processing = false;
+                    
+                    // 신규 과제가 있을 경우
+                    if(!subjects.isEmpty() && currTime == subjects.peek().time) {
+                        currSubject = subjects.poll();
+                        currTime += minTime;
+                        break;
+                    }
+                    
+                    // 대기하고 있는 과제가 있을 경우
+                    else if(!waitSubjects.isEmpty()) {
+                        currSubject = waitSubjects.pop();
+                        currTime += minTime;
+                        break;
+                    }
+                    
+                    // 대기 과제도 없고 신규과제도 없는 경우 
+                    else if(waitSubjects.isEmpty() && subjects.isEmpty()) {
+                        flag = false;
+                        break;
+                    }                    
+                 }
+                
+                // 새로운 과제가 들어온 경우 
+                if( !subjects.isEmpty() && (currTime + minTime) == subjects.peek().time ) {
+                    if(Processing) {
+                        currSubject.proTime -= minTime;
+                        waitSubjects.push(currSubject);    
+                    }
+                    
+                    currSubject = subjects.poll();
+                    currTime += minTime;
+                    break;
+                }
+                
+                // 과제 처리
+                minTime++;
+            }        
+        }
+        
+        return compleSubjects.toArray(new String[compleSubjects.size()]);        
+    }    
+}
