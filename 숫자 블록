@@ -1,0 +1,42 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(long begin, long end) {
+        // 형 변환(long -> int)
+        int[] answer = new int[(int)(end-begin) + 1];
+        
+        for(long i = begin; i <= end; i++) {
+            answer[(int)(i - begin)] = (int)maxDiv(i);
+        }
+        
+        return answer;
+    }
+    
+    public static long maxDiv(long num){
+        int result = 1;
+
+        // begin 값이 1일 경우
+        if(num == 1){
+            return 0;  // [begin]값 0으로 변경
+        }
+
+        // i로 나눠지는 num 약수 찾기
+        for(int i = 2; i <= Math.sqrt(num); i++) {
+            // 약수가 존재할 경우
+            if(num % i == 0) {
+                System.out.println(i);
+                
+                // 설치된 블록의 길이가 넘지 않을 경우
+                if(num / i <= 10000000) {
+                    result = Math.max(result, (int) (num / i));  // 블록 값 갱신
+                    break;
+                    
+                } else {
+                    result = Math.max(result, i);
+                }
+            }
+        }
+        
+        return result;
+    }
+}
