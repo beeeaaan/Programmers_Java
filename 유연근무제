@@ -1,0 +1,36 @@
+class Solution {
+    public int solution(int[] schedules, int[][] timelogs, int startday) {
+        int answer = 0;
+        
+        for(int i = 0; i < schedules.length; i++) {
+            int tardy = timeOut(schedules[i]);
+            boolean pass = true;
+            
+            // 요일 처리
+            for(int j = 0; j < timelogs[i].length; j++) {
+                if(((startday + j) % 7 > 0 && (startday + j) % 7 < 6)) {
+                    // 지각
+                    if(tardy < timelogs[i][j]) {
+                        pass = false;
+                        break;
+                    }
+                }
+            }
+            
+            // 정상 출근
+            if(pass) answer++;
+        }
+        
+        return answer;
+    }
+    
+    // 시간 정수 표현
+    public int timeOut(int time) {
+        time += 10;
+        
+        if(time % 100 >= 60)
+            time += 40;
+        
+        return time;
+    }
+}
