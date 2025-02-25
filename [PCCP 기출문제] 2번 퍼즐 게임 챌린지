@@ -1,0 +1,62 @@
+import java.util.*;
+class Solution {
+    static int [] difficultyLevel;
+    static int [] timeTaken;
+    static long limitTime;
+    static int size;
+    
+    public long solution(int[] diffs, int[] times, long limit) {
+        // static 변수 초기화 
+        difficultyLevel = diffs;  // 난이도 
+        timeTaken = times;  // 소요 시간 
+        limitTime = limit;  // 제한 시간 
+        size = diffs.length; 
+        
+        long end = Long.MAX_VALUE;
+        long start = 0;
+        
+        // 이분 탐색 시작 
+        while(start < end) {
+            long middle = (start + end) / 2;
+            long result = calculate(middle);
+        
+            if(result > limit) {
+                start = middle + 1;
+            }
+            else end = middle;
+        }
+        
+        return start;
+    }
+    
+    public long calculate(long level) {
+        // level은 항상 0보다 큼
+        if(level <= 0) {
+            return Long.MAX_VALUE;
+        }
+        
+        long use = 0;  // 해당 숙련도로 소요하는 시간 
+        
+        for(int i = 0; i < size; i++) {
+            if(difficultyLevel[i] <= level){
+                use += timeTaken[i];
+            }
+            else {
+                long count = difficultyLevel[i] - level;
+                
+                if(i == 0) {
+                    use += timeTaken[i] * count + timeTaken[i];
+                }
+                else {
+                    use += (timeTaken[i] + timeTaken[i-1] ) * count + timeTaken[i];
+                }
+            }
+            // 이미 제한 시간 넘었을 경우 더 계산할 필요 없음
+            if(use > limitTime) {
+                return use;
+            }
+        }
+        
+        return use;
+    }
+}
