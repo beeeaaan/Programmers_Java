@@ -1,4 +1,5 @@
 import java.util.*;
+
 class Solution {
     static int [] difficultyLevel;
     static int [] timeTaken;
