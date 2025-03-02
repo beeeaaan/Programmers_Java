@@ -1,0 +1,74 @@
+import java.util.*;
+
+class Solution {
+    List<Integer> info_List;
+    static int[] peach;  // 전역 변수화
+    
+    // 각 점수 정답 개수 0으로 초기화
+    static int[] lion = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    static int score_Max = 0;  // 최대 점수
+    static int[] answer = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    
+    // 백트래킹을 통해 구한 경우의 수 바로 계산
+    void backtracking(int start, int count, int size) {  // 중복 조합 위한 인덱스, 현재 화살 개수, 화살 총 개수
+    
+    	// 모든 화살을 다 쏜 경우
+        if(count >= size) {
+            int score_Peach = 0;  // 라이언 점수
+            int score_Lion = 0;  // 어피치 점수
+            
+            // 둘 다 0일때를 제외하고 라이언이 커야지만 점수를 얻음
+            for(int i = 0; i < peach.length; i++) {
+                if(peach[i] == 0 && lion[i] == 0) continue;
+                if(lion[i] > peach[i]) score_Lion += 10 - i;
+                else score_Peach += 10 - i;
+            }
+            
+             // 두 사람의 점수 격차
+            int score_Count = score_Lion - score_Peach;
+            
+            // 일단 라이언이 이겨야 함
+            if(score_Lion > score_Peach) {            	
+                // 기존 점수보다 클 경우 바로 할당해주기
+                if(score_Count > score_Max){
+                    score_Max = score_Count;
+                    answer = lion.clone();
+                }
+                
+                // 기존 점수와 같을 경우
+                else if(score_Count == score_Max) {
+                	// 마지막 배열부터 앞으로 이동
+                    for(int i = 10; i >= 0; i--) {
+                    	// 가장 낮은 수가 새로 찾은 배열보다 더 클 경우
+                        if(lion[i] > answer[i]){
+                            answer = lion.clone();
+                        }
+                        
+                        // 가장 낮은 수가 기존의 정답 배열보다 클 경우
+                        else if(lion[i] < answer[i]) return;
+                    }
+                }
+            }
+            return;  // 종료
+        }       
+        
+        // 중복 조합으로 백트래킹
+        for(int i = start; i <= 10; i++) {
+            if(lion[i] > peach[i]) continue;
+            lion[i]++;
+            backtracking(i, count + 1, size);
+            lion[i]--;  // 다른 경우 위해 원상복구
+        }
+    }
+    
+    
+    public int[] solution(int n, int[] info) {
+        peach = info;
+        backtracking(0, 0, n);
+        
+        // 스트림 통해 구한 정답 배열의 0 개수가 11개일 경우 실패
+        if(Arrays.stream(answer).filter(e -> e == 0).count() == 11) 
+            answer = new int[]{-1};
+        return answer;
+    }
+}
