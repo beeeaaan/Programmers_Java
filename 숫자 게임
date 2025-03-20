@@ -1,0 +1,31 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] A, int[] B) {
+    	// 점수 역순으로
+        PriorityQueue<Integer> pq = new PriorityQueue(Collections.reverseOrder());
+        for(int i : A)
+            pq.add(i);        
+        // 점수 순으로
+        Arrays.sort(B);
+        ArrayDeque<Integer> adq = new ArrayDeque();
+        
+        for(int i : B)
+            adq.add(i);        
+        int answer = 0;
+        
+        while(!pq.isEmpty()) {
+            int target = pq.poll();
+            // B팀의 최고 숫자가 A팀의 최고 숫자보다 높은 경우 승리
+            if(target < adq.peekLast()){
+                adq.pollLast();
+                answer++;
+                // 질 경우 가장 작은 숫자를 내며 져야 함
+            } else {
+                adq.pollFirst();
+            }
+        }
+        
+        return answer;
+    }
+}
