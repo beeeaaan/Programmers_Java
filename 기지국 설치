@@ -1,0 +1,22 @@
+class Solution {
+    public int solution(int n, int[] stations, int w) {
+	    int answer = 0;  // 기지국 갯수
+	    int stI = 0;  // station 인덱스
+	    int posi = 1;	// 아파트 1동부터 마지막까지
+    
+	    while(posi <= n) {  // 동 전체 돌기
+            // 기존 설치된 기지국 범위 안에 있을 경우
+		    if(stI < stations.length && posi >= stations[stI] - w) {
+			    posi = stations[stI] + w + 1;  // 기지국의 오른쪽 끝
+			    stI ++;	// 다음 설치한 기지국을 찾기
+            }
+            else {  
+			    answer += 1;  // 기지국 설치			
+			    // 최대 전파 범위 : 왼쪽 전파범위 + 기지국설치(1) + 오른쪽 전파범위
+			    posi += (w * 2) + 1;
+            }
+        }
+
+	    return answer;
+    }
+}
