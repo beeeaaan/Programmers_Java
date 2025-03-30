@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class Solution {
+    private static boolean[] visit; // 방문 여부 확인
+    private static List<String> result = new ArrayList<>();
+
+    public static String[] solution(String[][] tickets) {
+        visit = new boolean[tickets.length];        
+        // 완전탐색 및 정렬
+        dfs(0, "ICN", "ICN", tickets);
+        Collections.sort(result);
+        
+        // 결과 출력
+        String[] answer = result.get(0).split(" ");
+        return answer;
+    }
+
+    public static void dfs(int idx, String start, String route, String[][] tickets) {
+        // 비행기 티켓 모두 사용한 경우(탈출 조건)
+        if (idx == tickets.length) {
+            result.add(route);
+            return;
+        }
+
+        // 백트래킹 알고리즘 사용
+        for (int i = 0; i < tickets.length; i++) {
+            if (tickets[i][0].equals(start) && !visit[i]) {
+                visit[i] = true;
+                dfs(idx + 1, tickets[i][1], route + " " + tickets[i][1], tickets);
+                visit[i] = false;
+            }
+        }
+        return;
+    }
+}
