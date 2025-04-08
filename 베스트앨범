@@ -1,0 +1,92 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] genres, int[] plays) {   
+        Map<String, List<Song>> map = new HashMap<>();
+        
+        // 장르별 노래 Map에 저장
+        for(int i = 0; i < genres.length; i++) {
+            if(map.get(genres[i]) == null) {
+                map.put(genres[i], new ArrayList<>());
+            }           
+            
+            map.get(genres[i]).add(new Song(i, plays[i]));
+        }
+        
+        List<Genre> list = new ArrayList<>();
+        
+        // 장르별 전체 플레이 횟수 저장
+        for(String s : map.keySet()) {
+            int sum = 0;
+            
+            for(int i = 0; i < map.get(s).size(); i++) {
+                sum += map.get(s).get(i).play;
+            }
+            
+            list.add(new Genre(s, sum));
+        }
+        
+        // 내림차순 정렬(장르별 전체 플레이 횟수)
+        Collections.sort(list, Collections.reverseOrder());        
+        // 장르별 노래 리스트에서 2곡씩 뽑기
+        List<Integer> result = new ArrayList<>();
+        
+        for(int i = 0; i < list.size(); i++) {
+            String genreName = list.get(i).name;
+            int genreSize = map.get(genreName).size();
+            Collections.sort(map.get(genreName), Collections.reverseOrder()); // 노래 플레이 횟수 내림차순 정렬
+            
+            for(int j = 0; j < genreSize; j++) {
+                // 2개 넘으면 그만 뽑기
+                if(j == 2) {
+                    break;
+                }
+                // 노래 고유 번호 결과 저장
+                result.add(map.get(genreName).get(j).id);
+            }
+        }        
+        
+        int[] answer = new int[result.size()];
+        
+        for(int i = 0; i < answer.length; i++) {
+            answer[i] = result.get(i);
+        }
+        
+        return answer;
+    }
+}
+
+// 장르 정보 저장
+class Genre implements Comparable<Genre> {
+    String name;
+    int totalPlay;
+    
+    public Genre(String name, int totalPlay) {
+        this.name = name;
+        this.totalPlay = totalPlay;
+    }
+    
+    // 장르 총 플레이 수 정렬
+    @Override
+    public int compareTo(Genre other) {
+        return totalPlay - other.totalPlay;
+    }
+}
+
+// 노래 정보 저장
+class Song implements Comparable<Song> {
+    int id, play;
+    
+    public Song(int id, int play) {
+        this.id = id;
+        this.play = play;
+    }
+    
+    // 노래 플레이 수 정렬
+    @Override
+    public int compareTo(Song other) {
+        
+        return play - other.play;
+    }
+}
+ 
