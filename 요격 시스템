@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[][] targets) {
+        int answer = 0;
+        // 미사일 마지막 기준으로 정렬
+        Arrays.sort(targets, (o1, o2) -> o1[1] - o2[1]);        
+        int x = 0;
+        
+        for(int[] y : targets) {
+            // 요격 시스템의 위치보다 미사일의 시작 위치가 클 경우
+            if(x <= y[0]) {
+                // 요격 시스템의 위치 미사일 마지막 위치로 변경 및 answer + 1
+                x = y[1];
+                answer++;
+            }
+        }
+        
+        return answer;
+    }
+    
+}
