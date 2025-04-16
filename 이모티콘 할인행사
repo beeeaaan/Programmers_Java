@@ -1,0 +1,61 @@
+import java.util.*;
+
+class Solution {
+    private int[] answer = new int[2];
+    private int[] rate = {0, 10, 20, 30, 40};
+    
+    public int[] solution(int[][] users, int[] emoticons) {
+        int[] discount = new int[emoticons.length];
+        
+        totalPrices(users, emoticons, 0, discount);
+        return answer;
+    }
+    
+    private void totalPrices(int[][] users, int[] emoticons, int idx, int[] discount) {
+        if (idx == emoticons.length) {
+            maxTarget(users, emoticons, discount);
+            return;
+        }
+        
+        for (int i = 0; i < rate.length; i++) {
+            discount[idx] = rate[i];
+            totalPrices(users, emoticons, idx + 1, discount);
+        }
+    }
+    
+    private void maxTarget(int[][] users, int[] emoticons, int[] discount) {
+        int plusUsers = 0;
+        int total = 0;
+        
+        for (int i = 0; i < users.length; i++) {
+            int amount = 0;
+            
+            // 이모티콘 탐색
+            for (int j = 0; j < emoticons.length; j++) {    
+                // 사용자가 원하는 비율이 현재 적용된 할인 비율보다 작거나 같을 경우
+                if (users[i][0] <= discount[j])
+                    amount += emoticons[j] * (100 - discount[j]) / 100;
+                
+                // 사용자의 이모티콘 플러스 가입 기준 가격이 현재 구매 가격보다 작거나 같을 경우
+                if (users[i][1] <= amount) {
+                    plusUsers++;
+                    break;
+                }
+            }
+            
+            // 이모티콘 플러스 미가입자의 결제 비용
+            if (amount < users[i][1])
+                total += amount;
+        }
+        
+        // 최대 결과 확인
+        if (answer[0] < plusUsers) {
+            answer[0] = plusUsers;
+            answer[1] = total;
+        }
+        
+        else if (answer[0] == plusUsers) {
+            answer[1] = Math.max(answer[1], total);
+        }
+    }
+}
