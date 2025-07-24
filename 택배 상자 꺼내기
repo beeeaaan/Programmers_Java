@@ -1,0 +1,18 @@
+class Solution {
+    public int solution(int n, int w, int num) {
+        int answer = 0;
+        int row = (num - 1) / w;
+        int column = (row % 2 == 0) ? (num - 1) % w : (w - 1 - (num - 1) % w);
+
+        for (; row < (n + w - 1) / w; row++) {
+            // 짝수행은 그대로 홀수행은 반대로
+            int box_Above = (row % 2 == 0) ? column + row * w : (w - 1 - column) + row * w;
+            
+            // 전체 상자 갯수 안에 포함될 경우
+            if (box_Above < n) answer++;
+        }
+
+        return answer;
+    }
+}
+
