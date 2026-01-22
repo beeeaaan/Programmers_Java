@@ -1,0 +1,45 @@
+import java.util.Arrays;
+import java.util.HashSet;
+
+public class Solution {
+    static boolean[] check;
+    static HashSet<String> set;
+    
+	public static int solution(String[] userid, String[] bannedid) {
+        check = new boolean[userid.length];
+        set = new HashSet<String>();
+        
+        for(int i = 0; i < bannedid.length; i++) 
+            // '*'을 '.'로 변환(정규식 위해)
+        	bannedid[i] = bannedid[i].replace('*', '.');
+        
+        back(0, "", bannedid, userid);
+        
+		return set.size();
+	}
+	
+	public static void back(int depth, String result, String[] bannedid, String[] userid) {
+        // 불량 사용자 아이디 개수만큼 조합이 만들어질 경우 종료
+		if(depth == bannedid.length) {
+			String[] array = result.split(" ");
+			Arrays.sort(array);
+			
+			String string = "";
+            
+            // 정렬된 아이디 하나의 문자열로 추가
+			for(String s:array) string += s;
+            // 중복 제외하고 하나만 남기기
+			set.add(string);
+			
+			return;
+		}
+		
+		for(int i = 0; i < userid.length; i++) {
+            // 이미 쓴 사용자 아이디이거나 불량 아디 중 '.' 제외하고 사용자 아이디와 다른 부분이 있는 경우 탐색하지 않기
+			if(check[i] || !userid[i].matches(bannedid[depth])) continue;			
+			check[i] = true;
+			back(depth+1, userid[i] + " " + result, bannedid, userid);
+			check[i] = false;
+		}
+	}
+}
