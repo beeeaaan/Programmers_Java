@@ -1,0 +1,30 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] gems) {
+        int allGems = new HashSet<>(Arrays.asList(gems)).size();
+        int[] answer = new int[2];
+        int length = Integer.MAX_VALUE;
+        int start = 0;
+        Map<String, Integer> nowMap = new HashMap<>();  // 현재 구간 보석 개수
+
+        for (int end = 0; end < gems.length; end++) {
+            nowMap.put(gems[end], nowMap.getOrDefault(gems[end], 0) + 1);
+
+            // start쪽 보석이 2개 이상일 경우 구간 줄이기
+            while (nowMap.get(gems[start]) > 1) {
+                nowMap.put(gems[start], nowMap.get(gems[start]) - 1);
+                start++;
+            }
+
+            // 모든 보석 포함하고, 더 짧은 구간일 경우 갱신
+            if (nowMap.size() == allGems && length > (end - start)) {
+                length = end - start;
+                answer[0] = start + 1;
+                answer[1] = end + 1;
+            }
+        }
+
+        return answer;
+    }
+}
