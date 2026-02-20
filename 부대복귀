@@ -1,0 +1,50 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int n, int[][] roads, int[] sources, int destination) {
+        // 그래프 인접 리스트
+        List<Integer>[] graph = new ArrayList[n + 1];
+        
+        for (int i = 1; i <= n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        
+        // roads 양방향 연결
+        for (int[] road : roads) {
+            graph[road[0]].add(road[1]);
+            graph[road[1]].add(road[0]);
+        }
+        
+        // 각 노드까지의 거리 저장
+        int[] dist = new int[n + 1];
+        Arrays.fill(dist, -1);  // 기본은 -1 (도달 불가)
+        
+        // BFS 큐
+        Queue<Integer> queue = new LinkedList<>();
+        
+        // 시작점은 도착지 (destination)
+        dist[destination] = 0;
+        queue.offer(destination);
+        
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            
+            for (int nxt : graph[cur]) {
+                // 방문하지 않은 경우
+                if (dist[nxt] == -1) {
+                    dist[nxt] = dist[cur] + 1;
+                    queue.offer(nxt);
+                }
+            }
+        }
+        
+        // sources 배열 순서대로 거리 결과 반환
+        int[] answer = new int[sources.length];
+        
+        for (int i = 0; i < sources.length; i++) {
+            answer[i] = dist[sources[i]];
+        }
+        
+        return answer;
+    }
+}
