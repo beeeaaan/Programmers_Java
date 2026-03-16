@@ -1,0 +1,48 @@
+class Solution {
+    public int solution(int[] stones, int k) {
+        int answer = 0;       
+        int left = 1;
+        int right = 200000000;
+
+        // 이분 탐색(최대 몇 명까지 건널 수 있는지)
+        while(left <= right) {
+            int mid = (left + right) / 2;
+
+            // mid명이 건널 수 있는 경우
+            if(canCross(stones, k, mid)) {
+                answer = mid;
+                // 더 많은 인원 가능한지 확인
+                left = mid + 1;
+            // 불가능할 경우
+            } else {
+                // 인원 수 줄이기
+                right = mid - 1;
+            }
+        }
+
+        return answer;
+    }
+    
+    static boolean canCross(int[] stones, int k, int mid) {
+        int skip = 0; // 연속으로 밟을 수 없는 돌의 개수
+
+        for(int stone : stones) {
+            // mid명이 지나가면 돌의 값 확인(음수)
+            if(stone - mid < 0) {
+                // 밟을 수 없는 돌
+                skip++;
+            // 밟을 수 있는 돌일 경우 연속 끊김
+            } else {
+                skip = 0;
+            }
+
+            // 연속으로 k개 못 밟을 경우
+            if(skip == k)
+                // 건널 수 없음
+                return false;
+        }
+
+        // 끝까지 문제 없을 경우 건널 수 있음
+        return true;
+    }
+}
